@@ -47,12 +47,13 @@ public class MentorServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 			
-			PrintWriter pw=res.getWriter();
+			PrintWriter out = res.getWriter();
 			try {
 				String status = addMentor(req);
-				System.out.println(status);
+				//System.out.println(status);
+				out.print(status);
 				if(status.equals("success")) {
-					RequestDispatcher rd=req.getRequestDispatcher("displayMentor.jsp");
+					RequestDispatcher rd=req.getRequestDispatcher("DisplayMentor.jsp");
 					rd.include(req, res);
 				}
 				if(status.equals("failure"))
@@ -107,7 +108,7 @@ public class MentorServlet extends HttpServlet {
 
 	private String addMentor(HttpServletRequest req) throws SQLException, ParseException {
 		// TODO Auto-generated method stub
-		MentorBean mentor=new MentorBean();
+		MentorBean mentor = new MentorBean();
 		
 		mentor.setName(req.getParameter("mentor_name"));
 		mentor.setEmail(req.getParameter("mentor_email"));

@@ -16,18 +16,18 @@ public class MentorDAO {
 
 	public int createMentor(MentorBean mentor) throws SQLException
 	{
-		Connection con=DBUtil.getConnection();
+		Connection con = DBUtil.getConnection();
 		
-		PreparedStatement ps=con.prepareStatement("insert into Mentor_info values(?,?,?,?,?,?,?)");
+		PreparedStatement ps = con.prepareStatement("insert into Mentor_info values(?,?,?,?,?,?,?)");
 		
 		ps.setString(1,mentor.getEmail());
 		ps.setString(2, mentor.getName());
-		ps.setDate(3,new java.sql.Date((mentor.getMentorStartDate().getTime())));
-		ps.setDate(4,new java.sql.Date((mentor.getMentorEndDate().getTime())));
+		ps.setDate(3, new java.sql.Date((mentor.getMentorStartDate().getTime())));
+		ps.setDate(4, new java.sql.Date((mentor.getMentorEndDate().getTime())));
 		ps.setInt(5, mentor.getMaxNoOfMentees());
 		ps.setString(6, mentor.getTechnologyStream());
-		ps.setString(7,mentor.getStatus());
-		int insert=ps.executeUpdate();
+		ps.setString(7, mentor.getStatus());
+		int insert = ps.executeUpdate();
 		return insert;
 		
 	}
